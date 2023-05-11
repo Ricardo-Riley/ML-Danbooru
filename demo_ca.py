@@ -57,6 +57,16 @@ def make_args():
     parser.add_argument('--out_type', type=str, default='json')
 
     args = parser.parse_args()
+
+    # python demo.py --data <path to image or directory> --model_name tresnet_d --num_of_groups 32 --ckpt <path to ckpt> --thr 0.7 --image_size 640 
+    # python demo.py --data <path to image or directory> --model_name tresnet_d --num_of_groups 32 --ckpt <path to ckpt> --thr 0.7 --image_size 640 --keep_ratio True
+    # python demo_ca.py --data imgs/t1.jpg --model_name caformer_m36 --ckpt ckpt/caformer_m36-2-20000.ckpt --thr 0.7 --image_size 448
+
+    args.data = "imgs/girl.jpg"
+    args.data = "imgs/"
+    args.model_name = "caformer_m36"
+    args.ckpt = "ckpt/ml_caformer_m36_fp16_dec-5-97527.ckpt"
+    # args.fp16=True
     return args
 
 class Demo:
