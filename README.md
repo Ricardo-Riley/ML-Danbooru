@@ -14,6 +14,7 @@ Model trained with cleaned [danbooru2021](https://gwern.net/danbooru2021).
 
 ## Model-Zoo
 https://huggingface.co/7eu7d7/ML-Danbooru
+https://huggingface.co/7eu7d7/ML-Danbooru/tree/main
 
 ## Usage
 Download the model and run below command:
