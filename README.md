@@ -1,6 +1,15 @@
 # ML-Danbooru: Anime image tags detector
 
+
+## 修改
+
+增加web-demo.py 参考 [7eu7d7/ML-Danbooru-webui：ML-Danbooru 的 webui 扩展 (github.com)](https://github.com/7eu7d7/ML-Danbooru-webui) 实现gradio界面，   demo_gradio_client_api.py
+
+补充requirements.txt依赖
+
+
 ## Introduction
+
 An anime image tag detector based on modified [ML-Decoder](https://github.com/Alibaba-MIIL/ML_Decoder).
 Model trained with cleaned [danbooru2021](https://gwern.net/danbooru2021).
 
@@ -13,21 +22,26 @@ Model trained with cleaned [danbooru2021](https://gwern.net/danbooru2021).
 ![](./imgs/ml_danbooru.png)
 
 ## Model-Zoo
+
 https://huggingface.co/7eu7d7/ML-Danbooru
 https://huggingface.co/7eu7d7/ML-Danbooru/tree/main
 
 ## Usage
+
 Download the model and run below command:
+
 ```bash
 python demo.py --data <path to image or directory> --model_name tresnet_d --num_of_groups 32 --ckpt <path to ckpt> --thr 0.7 --image_size 640 
 ```
 
 Keep the image ratio invariant:
+
 ```bash
 python demo.py --data <path to image or directory> --model_name tresnet_d --num_of_groups 32 --ckpt <path to ckpt> --thr 0.7 --image_size 640 --keep_ratio True
 ```
 
 ### ML_CAFormer
+
 ```bash
 python demo_ca.py --data <path to image or directory> --model_name caformer_m36 --ckpt <path to ckpt> --thr 0.7 --image_size 448
 ```
