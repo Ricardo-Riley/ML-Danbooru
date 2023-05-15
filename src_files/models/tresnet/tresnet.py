@@ -7,11 +7,10 @@ from .layers.anti_aliasing import AntiAliasDownsampleLayer
 from .layers.avg_pool import FastAvgPool2d
 from .layers.general_layers import SEModule, SpaceToDepthModule
 
-from inplace_abn import InPlaceABN, ABN
-
 
 def InplacABN_to_ABN(module: nn.Module) -> nn.Module:
     # convert all InplaceABN layer to bit-accurate ABN layers.
+    from inplace_abn import InPlaceABN, ABN
     if isinstance(module, InPlaceABN):
         module_new = ABN(module.num_features, activation=module.activation,
                          activation_param=module.activation_param)
@@ -35,6 +34,7 @@ def conv2d(ni, nf, stride):
 
 
 def conv2d_ABN(ni, nf, stride, activation="leaky_relu", kernel_size=3, activation_param=1e-2, groups=1):
+    from inplace_abn import InPlaceABN, ABN
     return nn.Sequential(
         nn.Conv2d(ni, nf, kernel_size=kernel_size, stride=stride, padding=kernel_size // 2, groups=groups,
                   bias=False),
@@ -164,7 +164,7 @@ class TResNet(Module):
         self.num_features = (self.planes * 8) * Bottleneck.expansion
         fc = nn.Linear(self.num_features, num_classes)
         self.head = nn.Sequential(OrderedDict([('fc', fc)]))
-
+        from inplace_abn import InPlaceABN, ABN
         # model initilization
         for m in self.modules():
             if isinstance(m, nn.Conv2d):
